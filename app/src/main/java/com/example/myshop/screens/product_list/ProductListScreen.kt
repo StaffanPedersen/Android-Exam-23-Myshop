@@ -27,6 +27,7 @@ fun ProductListScreen(
     viewModel: ProductListViewModel,
     onProductClick: (productId: Int) -> Unit = {}
 ) {
+
     val product = viewModel.product.collectAsState()
 
     val filterMensClothingOnly = viewModel.filterMensClothing.collectAsState()
@@ -34,12 +35,13 @@ fun ProductListScreen(
     val filterWomensClothingOnly = viewModel.filterWomensClothing.collectAsState()
 
 
+
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TopBar(
-                title = "Products",
+                title = "My Shop",
                 onCartClick = { /* Handle cart click here */ },
                 onOptionsClick = { /* Handle options click here */ }
             )

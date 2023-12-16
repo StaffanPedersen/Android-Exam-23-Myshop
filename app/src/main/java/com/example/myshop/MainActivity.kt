@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,15 +24,16 @@ class MainActivity : ComponentActivity() {
    // private val _shoppingCartListViewModel: ShoppingCartListViewModel by viewModels()
    // private val _historyViewModel: HistoryViewModel by viewModels()
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         MyshopRepository.initializeDatabase(applicationContext)
 
         setContent {
+
             MyshopTheme {
                 val navController = rememberNavController()
-
                 NavHost(
                     navController = navController,
                     startDestination = "productListScreen"

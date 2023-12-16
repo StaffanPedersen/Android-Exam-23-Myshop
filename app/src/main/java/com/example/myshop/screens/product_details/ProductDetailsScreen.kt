@@ -15,8 +15,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -32,11 +32,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.myshop.components.TopBar
 
 @Composable
 fun ProductDetailsScreen(
     viewModel: ProductDetailsViewModel,
     onBackButtonClick: () -> Unit = {}
+
 ) {
     val productState = viewModel.selectedProduct.collectAsState()
     val product = productState.value
@@ -45,11 +47,21 @@ fun ProductDetailsScreen(
         return
     }
 
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorScheme.background),
         ) {
+            TopBar(
+                title = "Products",
+                onCartClick = { /* Handle cart click here */ },
+                onOptionsClick = { /* Handle options click here */ },
+                onBackButtonClick =  { onBackButtonClick()}
+            )
+
+            Divider()
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -57,14 +69,7 @@ fun ProductDetailsScreen(
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(
-                    onClick = { onBackButtonClick() }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "return button"
-                    )
-                }
+
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = product.title,
@@ -110,8 +115,7 @@ fun ProductDetailsScreen(
                     contentDescription = null,
                     modifier = Modifier.clickable {
 
-                    },
-                    tint = Color.Red
+                    }
                 )
                 Text(
                     text = product.title,
@@ -128,16 +132,16 @@ fun ProductDetailsScreen(
                     text = "Description: ${product.description}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
-                    color = Color.Gray
+
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = "Price: ${product.price}",
+                    text = "Price: $${product.price}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
-                    color = Color.Gray
+
                 )
 
                 Spacer(modifier = Modifier.height(30.dp))
@@ -146,7 +150,7 @@ fun ProductDetailsScreen(
                     text = "Customer rating: ${product.rating.rate}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
-                    color = Color.Gray
+
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -155,7 +159,7 @@ fun ProductDetailsScreen(
                     text = "Customer rate count: ${product.rating.count}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
-                    color = Color.Gray
+
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
