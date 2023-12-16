@@ -58,14 +58,16 @@ fun ProductItem(
                     .padding(start = 90.dp)
                     .absoluteOffset(30.dp, 0.dp)
             ) {
-                Text(text = product.title)
-                Spacer(modifier = Modifier.height(4.dp))
-               // Text(text = "Description ${product.description}")
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "Price: ${product.price}$")
-                Spacer(modifier = Modifier.height(4.dp))
-              //  Text(text = "Rating score: ${product.rating.rate}")
-               // Text(text = "Counted ratings: ${product.rating.count}")
+                Text(text = product.title,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text =  product.category)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = "Price: $${product.price}")
+                Spacer(modifier = Modifier.height(8.dp))
+             // Text(text = "Rating score: ${product.rating.rate}")
+             // Text(text = "Counted ratings: ${product.rating.count}")
             }
         }
     }

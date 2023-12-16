@@ -35,7 +35,7 @@ class ProductListViewModel : ViewModel() {
         initialValue = emptyList()
     )
 
-    fun setAstronautFilter(
+    fun setProductFilter(
         inSpaceOnly: Boolean? = null,
         activeOnly: Boolean? = null,
         favoritesOnly: Boolean? = null
