@@ -60,9 +60,12 @@ fun ProductItem(
             ) {
                 Text(text = product.title)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = product.description)
+                Text(text = "Description ${product.description}")
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "${product.price}")
+                Text(text = "Price: ${product.price}$")
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = "Rating score: ${product.rating.rate}")
+                Text(text = "Counted ratings: ${product.rating.count}")
             }
         }
     }
