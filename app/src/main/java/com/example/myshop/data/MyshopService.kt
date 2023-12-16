@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface MyshopService {
 
-    @GET("products/?limit=20")
+    @GET("products/?limit=100")
     suspend fun getAllProducts(): Response <List<Products>>
 
     @GET("products/{id}/")
