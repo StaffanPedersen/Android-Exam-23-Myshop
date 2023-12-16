@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -81,10 +82,10 @@ fun ProductDetailsScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = 14.dp)
                     .verticalScroll(state = rememberScrollState()),
             ) {
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -129,18 +130,20 @@ fun ProductDetailsScreen(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color.LightGray)
+                        .shadow(1.dp),
+
                     text = "Description: ${product.description}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
-
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
                     text = "Price: $${product.price}",
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Medium,
 
                 )
 
@@ -148,32 +151,16 @@ fun ProductDetailsScreen(
 
                 Text(
                     text = "Customer rating: ${product.rating.rate}",
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Medium,
-
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
                     text = "Customer rate count: ${product.rating.count}",
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Medium,
 
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-
-
-
-                Spacer(modifier = Modifier.height(32.dp))
-
-            Text(
-               modifier = Modifier.fillMaxWidth(),
-              text = product.description,
-               style = MaterialTheme.typography.bodyLarge,
-               color = Color.White
-            )
 
                 // add to shoppingcart button
                 Row(
