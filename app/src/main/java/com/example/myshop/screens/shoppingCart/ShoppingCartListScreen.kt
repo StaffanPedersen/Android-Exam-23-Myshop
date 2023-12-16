@@ -1,4 +1,4 @@
-package com.example.myshop.screens.ShoppingCart
+package com.example.myshop.screens.shoppingCart
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,8 +16,9 @@ import com.example.myshop.components.TopBar
 
 @Composable
 fun ShoppinCartListScreen(
-// viewModel: ShoppinCartListViewModel,
-//onProductClick: (productId: Int) -> Unit = {}
+ //viewModel: ShoppinCartListViewModel,
+onProductClick: (productId: Int) -> Unit = {}
+
 ) {
 
 
@@ -49,7 +50,7 @@ fun ShoppinCartListScreen(
 //                .weight(1f)
 //        ) {
 //            items(product.value) { product ->
-//                ProductItem(
+//                ShoppingCartItem(
 //                    product = product,
 //                    onClick = {
 //                        onProductClick(product.id)

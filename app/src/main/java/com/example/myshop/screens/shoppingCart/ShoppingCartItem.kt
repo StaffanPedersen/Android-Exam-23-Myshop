@@ -1,4 +1,4 @@
-package com.example.myshop.screens.product_list
+package com.example.myshop.screens.shoppingCart
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,7 +26,7 @@ import coil.compose.AsyncImage
 import com.example.myshop.data.Products
 
 @Composable
-fun ProductItem(
+fun ShoppingCartItem(
     product: Products,
     onClick: () -> Unit = {}
 ) {

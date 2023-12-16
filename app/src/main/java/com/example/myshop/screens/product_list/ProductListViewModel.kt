@@ -2,7 +2,7 @@ package com.example.myshop.screens.product_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myshop.data.MyshopRepository
+import com.example.myshop.data.MyShopRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,15 +23,15 @@ class ProductListViewModel : ViewModel() {
     val filterJewelery = _filterJewelery.asStateFlow()
 
     val product = combine(
-        MyshopRepository.getProduct(),
+        MyShopRepository.getProduct(),
         filterMensClothing,
         filterElectronics,
         filterWomenClothing,
         filterJewelery
     ) { productList, mensClothing, electronics, womenClothing, jewelery ->
         productList
-            .filter { !mensClothing || it.category ==  "men's clothing" }
-            .filter { !electronics || it.category == "electronics" }
+            .filter { !mensClothing || it.category == "men's clothing"  }
+            .filter { !electronics || it.category == "electronics"  }
             .filter { !womenClothing || it.category == "women's clothing" }
             .filter { !jewelery || it.category == "jewelery" }
     }.stateIn(

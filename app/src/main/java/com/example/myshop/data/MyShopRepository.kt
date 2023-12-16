@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object MyshopRepository {
+object MyShopRepository {
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -59,7 +59,7 @@ object MyshopRepository {
         emit(_productDao.getAllProducts().first())
     }.catch { e ->
         // Log the error and fallback to local data
-        Log.e("AstronautRepository", "Failed to get list of astronauts", e)
+        Log.e("MyshopRepository", "Failed to get list of products", e)
         emitAll(_productDao.getAllProducts()) // Continue streaming from the local data
     }.flowOn(Dispatchers.IO) // Use the IO dispatcher for database and network operations
 
