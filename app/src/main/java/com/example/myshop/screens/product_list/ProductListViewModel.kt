@@ -16,19 +16,24 @@ class ProductListViewModel : ViewModel() {
     private val _filterElectronics = MutableStateFlow(false)
     val filterElectronics = _filterElectronics.asStateFlow()
 
-    private val _filterWomensClothing = MutableStateFlow(false)
-    val filterWomensClothing = _filterWomensClothing.asStateFlow()
+    private val _filterWomenClothing = MutableStateFlow(false)
+    val filterWomenClothing = _filterWomenClothing.asStateFlow()
+
+    private val _filterJewelery = MutableStateFlow(false)
+    val filterJewelery = _filterJewelery.asStateFlow()
 
     val product = combine(
         MyshopRepository.getProduct(),
         filterMensClothing,
         filterElectronics,
-        filterWomensClothing
-    ) { productList, mensClothing, electronics, womensClothing ->
+        filterWomenClothing,
+        filterJewelery
+    ) { productList, mensClothing, electronics, womenClothing, jewelery ->
         productList
             .filter { !mensClothing || it.category ==  "men's clothing" }
             .filter { !electronics || it.category == "electronics" }
-            .filter { !womensClothing || it.category == "women's clothing" }
+            .filter { !womenClothing || it.category == "women's clothing" }
+            .filter { !jewelery || it.category == "jewelery" }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -36,18 +41,22 @@ class ProductListViewModel : ViewModel() {
     )
 
     fun setProductFilter(
-        inSpaceOnly: Boolean? = null,
-        activeOnly: Boolean? = null,
-        favoritesOnly: Boolean? = null
+        mensOnly: Boolean? = null,
+        electronicsOnly: Boolean? = null,
+        womenOnly: Boolean? = null,
+        jeweleryOnly: Boolean? = null
     ) {
-        inSpaceOnly?.let {
+        mensOnly?.let {
             _filterMensClothing.value = it
         }
-        activeOnly?.let {
+        electronicsOnly?.let {
             _filterElectronics.value = it
         }
-        favoritesOnly?.let {
-            _filterWomensClothing.value = it
+        womenOnly?.let {
+            _filterWomenClothing.value = it
+        }
+        jeweleryOnly?.let {
+            _filterJewelery.value = it
         }
     }
 }

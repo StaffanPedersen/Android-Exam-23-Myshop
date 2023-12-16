@@ -12,6 +12,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.myshop.data.MyshopRepository
+import com.example.myshop.screens.ShoppingCart.ShoppingCartViewModel
+
 import com.example.myshop.screens.product_details.ProductDetailsScreen
 import com.example.myshop.screens.product_details.ProductDetailsViewModel
 import com.example.myshop.screens.product_list.ProductListScreen
@@ -21,7 +23,7 @@ import com.example.myshop.ui.theme.MyshopTheme
 class MainActivity : ComponentActivity() {
     private val _productListViewModel: ProductListViewModel by viewModels()
     private val _productDetailsViewModel: ProductDetailsViewModel by viewModels()
-   // private val _shoppingCartListViewModel: ShoppingCartListViewModel by viewModels()
+    private val _shoppingCartListViewModel: ShoppingCartViewModel by viewModels()
    // private val _historyViewModel: HistoryViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -71,8 +73,10 @@ class MainActivity : ComponentActivity() {
                             onBackButtonClick = { navController.popBackStack() }
                         )
                     }
+
+
+                    }
                 }
             }
         }
     }
-}

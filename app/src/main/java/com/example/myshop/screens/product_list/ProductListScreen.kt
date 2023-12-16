@@ -32,66 +32,84 @@ fun ProductListScreen(
 
     val filterMensClothingOnly = viewModel.filterMensClothing.collectAsState()
     val filterElectronicsOnly = viewModel.filterElectronics.collectAsState()
-    val filterWomensClothingOnly = viewModel.filterWomensClothing.collectAsState()
+    val filterWomenClothingOnly = viewModel.filterWomenClothing.collectAsState()
+    val filterJeweleryOnly = viewModel.filterJewelery.collectAsState()
 
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TopBar(
+            title = "My Shop",
+            onCartClick = { /* Handle cart click here */ },
+            onOptionsClick = { /* Handle options click here */ }
+        )
 
+        Divider()
 
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TopBar(
-                title = "My Shop",
-                onCartClick = { /* Handle cart click here */ },
-                onOptionsClick = { /* Handle options click here */ }
-            )
-
-            Divider()
-
-        Row(
+        Column (
             modifier = Modifier
+                   .fillMaxSize()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                FilterChip(
+                    selected = filterElectronicsOnly.value,
+                    onClick = {
+                        viewModel.setProductFilter(electronicsOnly = !filterElectronicsOnly.value)
+                    },
+                    label = { Text(text = "Electronics") }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                FilterChip(
+                    selected = filterMensClothingOnly.value,
+                    onClick = {
+                        viewModel.setProductFilter(mensOnly = !filterMensClothingOnly.value)
+                    },
+                    label = { Text(text = "Men's clothing") }
+                )
+            }
+            Row(                modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            FilterChip(
-                selected = filterElectronicsOnly.value,
-                onClick = {
-                    viewModel.setProductFilter(activeOnly = !filterElectronicsOnly.value)
-                },
-                label = { Text(text = "Electronics") }
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            FilterChip(
-                selected = filterMensClothingOnly.value,
-                onClick = {
-                    viewModel.setProductFilter(inSpaceOnly = !filterMensClothingOnly.value)
-                },
-                label = { Text(text = "Men's clothing") }
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            FilterChip(
-                selected = filterWomensClothingOnly.value,
-                onClick = {
-                    viewModel.setProductFilter(favoritesOnly = !filterWomensClothingOnly.value)
-                },
-                label = { Text(text = "Women's clothing") }
-            )
-        }
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) {
-            items(product.value) { product ->
-                ProductItem(
-                    product = product,
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Spacer(modifier = Modifier.width(8.dp))
+                FilterChip(
+                    selected = filterWomenClothingOnly.value,
                     onClick = {
-                        onProductClick(product.id)
-                    }
+                        viewModel.setProductFilter(womenOnly = !filterWomenClothingOnly.value)
+                    },
+                    label = { Text(text = "Women's clothing") }
                 )
+                Spacer(modifier = Modifier.width(8.dp))
+                FilterChip(
+                    selected = filterJeweleryOnly.value,
+                    onClick = {
+                        viewModel.setProductFilter(jeweleryOnly = !filterJeweleryOnly.value)
+                    },
+                    label = { Text(text = "jewelery") }
+                )
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                items(product.value) { product ->
+                    ProductItem(
+                        product = product,
+                        onClick = {
+                            onProductClick(product.id)
+                        }
+                    )
+                }
             }
         }
     }

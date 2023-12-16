@@ -16,9 +16,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
@@ -140,27 +141,28 @@ fun ProductDetailsScreen(
                     fontWeight = FontWeight.Medium,
                 )
 
+
+
                 Spacer(modifier = Modifier.height(20.dp))
-
-                Text(
-                    text = "Price: $${product.price}",
-
-                )
-
-                Spacer(modifier = Modifier.height(30.dp))
 
                 Text(
                     text = "Customer rating: ${product.rating.rate}",
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
                     text = "Customer rate count: ${product.rating.count}",
 
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Price: $${product.price}",
+                    )
+                Spacer(modifier = Modifier.height(20.dp))
 
                 // add to shoppingcart button
                 Row(
@@ -170,19 +172,13 @@ fun ProductDetailsScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    IconButton(
-                        modifier = Modifier
-                            .height(48.dp)
-                            .weight(1f),
-
-                        onClick = { }
+                    Button(
+                        onClick = { /* Do something! */ },
+                        contentPadding = ButtonDefaults.ButtonWithIconContentPadding
                     ) {
-                        Text(
-                            text = "Add to shopping cart",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = Color.Gray
-                        )
 
+                        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                        Text("Add to shopping cart")
                     }
                 }
             }
