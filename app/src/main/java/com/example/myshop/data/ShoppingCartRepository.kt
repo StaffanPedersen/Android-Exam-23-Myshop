@@ -3,10 +3,7 @@ package com.example.myshop.data
 import android.content.Context
 import androidx.room.Room
 import com.example.myshop.data.room.ShoppingCartDatabase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 object ShoppingCartRepository {
 
@@ -21,13 +18,18 @@ object ShoppingCartRepository {
         ).fallbackToDestructiveMigration().build()
     }
 
-    fun deleteCartById(productCartId: Int): Flow<Int> = flow {
-        emit(_shoppingCartDao.deleteCartById(productCartId))
-    }.flowOn(Dispatchers.IO)
-
     fun getAllCartProducts(): Flow<List<CartProducts>> = _shoppingCartDao.getAllCartProducts()
+
+    suspend fun getCartProductById(id: Int): CartProducts = _shoppingCartDao.getCartProductById(id)
+
+    suspend fun updateCartProduct(cartProduct: CartProducts) =
+        _shoppingCartDao.updateCartProduct(cartProduct)
 
     suspend fun insertCartProducts(cartProducts: List<CartProducts>) =
         _shoppingCartDao.insertCartProducts(cartProducts)
+
+    suspend fun removeProductFromCart(productId: Int) {
+        _shoppingCartDao.deleteCartById(productId)
+    }
 
 }

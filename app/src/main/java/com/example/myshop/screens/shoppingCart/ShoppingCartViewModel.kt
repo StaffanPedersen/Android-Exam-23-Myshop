@@ -8,15 +8,25 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ShoppingCartViewModel : ViewModel() {
+class ShoppingCartViewModel: ViewModel() {
+    private val _cartProducts = MutableStateFlow<List<CartProducts>>(emptyList())
+    val cartProducts: StateFlow<List<CartProducts>> = _cartProducts
 
-    private var setProductToCart: StateFlow<CartProducts?> = MutableStateFlow(null)
+    init {
+        fetchCartProducts()
+    }
 
-
-    fun setProductToCart(products: List<CartProducts>) {
+    private fun fetchCartProducts() {
         viewModelScope.launch {
-            val cartProducts = ShoppingCartRepository.insertCartProducts(products)
+            ShoppingCartRepository.getAllCartProducts().collect { products ->
+                _cartProducts.value = products
+            }
+        }
+    }
 
+    fun removeProductFromCart(productId: Int) {
+        viewModelScope.launch {
+            ShoppingCartRepository.removeProductFromCart(productId)
         }
     }
 }

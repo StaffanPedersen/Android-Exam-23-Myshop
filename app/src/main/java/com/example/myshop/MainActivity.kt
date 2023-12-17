@@ -24,8 +24,7 @@ import com.example.myshop.ui.theme.MyshopTheme
 class MainActivity : ComponentActivity() {
     private val _productListViewModel: ProductListViewModel by viewModels()
     private val _productDetailsViewModel: ProductDetailsViewModel by viewModels()
-    private val _shoppingCartViewModel: ShoppingCartViewModel by viewModels()
- // private val _historyViewModel: HistoryViewModel by viewModels()
+    private val _shoppingCartViewModel: ShoppingCartViewModel by viewModels ()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {

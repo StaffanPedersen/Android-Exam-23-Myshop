@@ -2,12 +2,15 @@ package com.example.myshop.screens.product_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myshop.data.CartProducts
 import com.example.myshop.data.MyShopRepository
 import com.example.myshop.data.Products
+import com.example.myshop.data.ShoppingCartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class ProductDetailsViewModel : ViewModel() {
     var selectedProduct: StateFlow<Products?> = MutableStateFlow(null)
@@ -22,4 +25,27 @@ class ProductDetailsViewModel : ViewModel() {
             )
     }
 
+    fun addProductToCart(product: Products) {
+        viewModelScope.launch {
+            val existingProduct = ShoppingCartRepository.getCartProductById(product.id)
+
+            if (existingProduct != null) {
+                // The product already exists in the cart, so increase the quantity
+                existingProduct.quantity += 1
+                ShoppingCartRepository.updateCartProduct(existingProduct)
+            } else {
+                // The product does not exist in the cart, so add a new entry
+                val cartProduct = CartProducts(
+                    id = product.id,
+                    title = product.title,
+                    price = product.price,
+                    description = product.description,
+                    category = product.category,
+                    image = product.image,
+                    quantity = 1
+                )
+                ShoppingCartRepository.insertCartProducts(listOf(cartProduct))
+            }
+        }
+    }
 }

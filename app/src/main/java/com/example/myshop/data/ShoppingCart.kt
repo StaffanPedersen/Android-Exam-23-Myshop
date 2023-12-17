@@ -12,7 +12,7 @@ data class CartProducts(
     val description: String,
     val category: String,
     val image: String,
-    val quantity: Int,
+    var quantity: Int,
 )
 
 

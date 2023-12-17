@@ -36,8 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.myshop.components.TopBar
-import com.example.myshop.data.CartProducts
-import com.example.myshop.screens.shoppingCart.ShoppingCartViewModel
 
 @Composable
 fun ProductDetailsScreen(
@@ -50,7 +48,7 @@ fun ProductDetailsScreen(
 ) {
     val productState = viewModel.selectedProduct.collectAsState()
     val product = productState.value
-    val shoppingCartViewModel = ShoppingCartViewModel()
+  //  val shoppingCartViewModel = ShoppingCartViewModel()
     if (product == null) {
         Text(text = "Failed to get details.")
         return
@@ -182,13 +180,13 @@ fun ProductDetailsScreen(
                 ) {
                     // shoppingcart button
                     Button(
-                        onClick = { shoppingCartViewModel.setProductToCart( listOf(CartProducts(product.id, product.title, product.price,product.description, product.category, product.image, 1 )))},
+                        onClick = { viewModel.addProductToCart(product) },
                         contentPadding = ButtonDefaults.ButtonWithIconContentPadding
                     ) {
                         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                         Text("Add to shopping cart")
                     }
-                }
+                    }
             }
         }
     }
