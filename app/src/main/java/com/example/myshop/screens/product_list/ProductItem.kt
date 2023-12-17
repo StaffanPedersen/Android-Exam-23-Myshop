@@ -59,7 +59,8 @@ fun ProductItem(
                     .absoluteOffset(30.dp, 0.dp)
             ) {
                 Text(text = product.title,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 2
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text =  product.category)
