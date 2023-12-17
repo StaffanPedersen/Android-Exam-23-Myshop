@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 
 import com.example.myshop.data.CartProducts;
 
-@Database(entities = {CartProducts.class}, version = 1, exportSchema = false)
+@Database(entities = {CartProducts.class}, version = 6, exportSchema = false)
 //@TypeConverters({CustomTypeConverter.class})
 public abstract class ShoppingCartDatabase extends RoomDatabase {
     public abstract ShoppingCartDao shoppingCartDao();

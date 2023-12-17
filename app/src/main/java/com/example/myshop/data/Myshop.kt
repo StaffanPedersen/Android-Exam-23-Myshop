@@ -14,9 +14,8 @@ data class Products(
     val image: String,
     val rating: Rating,
 )
-
 data class Rating(
-    val rate: Double,
+    val rate: String,
     val count: Int
 )
 

@@ -27,10 +27,13 @@ import com.example.myshop.data.CartProducts
 
 
 @Composable
-fun ShoppingCartItem(
+fun ShoppingCartItem  (
+
     cartProducts: CartProducts,
     onClick: () -> Unit = {}
 ) {
+
+
     Row(
         modifier = Modifier
             .padding(10.dp)
@@ -59,11 +62,11 @@ fun ShoppingCartItem(
                     .padding(start = 90.dp)
                     .absoluteOffset(30.dp, 0.dp)
             ) {
-                Text(text = cartProducts.title,
+                Text(text =" ${cartProducts.title}",
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text =  cartProducts.category)
+                cartProducts.category?.let { Text(text = it) }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "Price: $${cartProducts.price}")
                 Spacer(modifier = Modifier.height(8.dp))
@@ -71,3 +74,5 @@ fun ShoppingCartItem(
         }
     }
 }
+
+

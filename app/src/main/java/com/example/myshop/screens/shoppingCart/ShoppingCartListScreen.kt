@@ -53,11 +53,11 @@ fun ShoppinCartListScreen(
 //                .fillMaxWidth()
 //                .weight(1f)
 //        ) {
-//            items(product.value) { product ->
+//            items(cartproduct.value) { cartproduct ->
 //                ShoppingCartItem(
-//                    product = product,
+//                    cartproduct = cartproduct,
 //                    onClick = {
-//                        onProductClick(product.id)
+//                        onProductClick(cartproduct.id)
 //                    }
 //                )
 //            }
