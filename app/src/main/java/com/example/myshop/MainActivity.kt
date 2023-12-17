@@ -17,6 +17,7 @@ import com.example.myshop.screens.product_details.ProductDetailsScreen
 import com.example.myshop.screens.product_details.ProductDetailsViewModel
 import com.example.myshop.screens.product_list.ProductListScreen
 import com.example.myshop.screens.product_list.ProductListViewModel
+import com.example.myshop.screens.shoppingCart.ShoppinCartListScreen
 import com.example.myshop.screens.shoppingCart.ShoppingCartViewModel
 import com.example.myshop.ui.theme.MyshopTheme
 
@@ -50,7 +51,9 @@ class MainActivity : ComponentActivity() {
                             viewModel = _productListViewModel,
                             onProductClick = { productId ->
                                 navController.navigate("productDetailsScreen/$productId")
-                            }
+                            },
+                            onCartClick = { navController.navigate("shoppingCartScreen") },
+                            navController = navController
                         )
                     }
 
@@ -71,22 +74,19 @@ class MainActivity : ComponentActivity() {
 
                         ProductDetailsScreen(
                             viewModel = _productDetailsViewModel,
-                            onBackButtonClick = { navController.popBackStack() }
+                            onBackButtonClick = { navController.popBackStack() },
+                            onCartClick = { navController.navigate("shoppingCartScreen") },
+                            navController = navController
                         )
                     }
                     composable(
-                        route = "shoppingCartListScreen/{productId}",
-                                arguments = listOf(
-                                navArgument(name = "productId") {
-                                    type = NavType.IntType
-                                })
-                    ){
-                      //  shoppingCartListScreen(
-                        //    viewModel = _shoppingCartListViewModel,
-                           // onProductClick = { productId ->
-                           //     navController.navigate("productDetailsScreen/$productId")
-                          //  }
-                       // )
+                        route = "shoppingCartScreen"
+                    ) {
+                        ShoppinCartListScreen(
+                            viewModel = _shoppingCartViewModel,
+                            onBackButtonClick = { navController.popBackStack() },
+                            navController = navController
+                        )
                     }
 
                 }

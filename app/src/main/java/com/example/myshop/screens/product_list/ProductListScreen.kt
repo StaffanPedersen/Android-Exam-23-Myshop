@@ -19,13 +19,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.myshop.components.TopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductListScreen(
     viewModel: ProductListViewModel,
-    onProductClick: (productId: Int) -> Unit = {}
+    onProductClick: (productId: Int) -> Unit = {},
+    onCartClick: () -> Unit = {},
+    navController: NavController
+
 ) {
 
     val product = viewModel.product.collectAsState()
@@ -41,8 +45,9 @@ fun ProductListScreen(
     ) {
         TopBar(
             title = "My Shop",
-            onCartClick = { /* Handle cart click here */ },
-            onOptionsClick = { /* Handle options click here */ }
+            onCartClick = onCartClick,
+            onOptionsClick = {},
+            navController = navController
         )
 
         Divider()
@@ -50,7 +55,10 @@ fun ProductListScreen(
         Column (
             modifier = Modifier
                    .fillMaxSize()
+
+
         ) {
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -96,6 +104,7 @@ fun ProductListScreen(
                     },
                     label = { Text(text = "jewelery") }
                 )
+
             }
             LazyColumn(
                 modifier = Modifier

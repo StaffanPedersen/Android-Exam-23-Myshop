@@ -11,13 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.myshop.components.TopBar
 
 
 @Composable
 fun ShoppinCartListScreen(
- //viewModel: ShoppinCartListViewModel,
-onProductClick: (productId: Int) -> Unit = {}
+    viewModel: ShoppingCartViewModel,
+    onBackButtonClick: () -> Unit = {},
+    navController: NavController,
+    onProductClick: (productId: Int) -> Unit = {}
 
 ) {
 
@@ -28,10 +31,11 @@ onProductClick: (productId: Int) -> Unit = {}
     ) {
         TopBar(
             title = "Shopping Cart",
-            onCartClick = { /* Handle cart click here */ },
-            onOptionsClick = { /* Handle options click here */ }
+            onCartClick = {},
+            onOptionsClick = {},
+            onBackButtonClick =  { onBackButtonClick()},
+            navController = navController
         )
-
         Divider()
 
         Row(

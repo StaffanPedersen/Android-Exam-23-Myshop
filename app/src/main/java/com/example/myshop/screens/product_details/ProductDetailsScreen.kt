@@ -33,13 +33,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.myshop.components.TopBar
 
 @Composable
 fun ProductDetailsScreen(
     viewModel: ProductDetailsViewModel,
-    onBackButtonClick: () -> Unit = {}
+    onBackButtonClick: () -> Unit = {},
+    onCartClick: () -> Unit = {},
+    navController: NavController
+
 
 ) {
     val productState = viewModel.selectedProduct.collectAsState()
@@ -57,9 +61,10 @@ fun ProductDetailsScreen(
         ) {
             TopBar(
                 title = "Products",
-                onCartClick = { /* Handle cart click here */ },
+                onCartClick = onCartClick,
                 onOptionsClick = { /* Handle options click here */ },
-                onBackButtonClick =  { onBackButtonClick()}
+                onBackButtonClick =  { onBackButtonClick()},
+                navController = navController
             )
 
             Divider()

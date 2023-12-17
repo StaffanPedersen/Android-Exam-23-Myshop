@@ -23,11 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.myshop.data.Products
+import com.example.myshop.data.CartProducts
+
 
 @Composable
 fun ShoppingCartItem(
-    product: Products,
+    cartProducts: CartProducts,
     onClick: () -> Unit = {}
 ) {
     Row(
@@ -47,10 +48,10 @@ fun ShoppingCartItem(
                 modifier = Modifier
                     .size(108.dp, 108.dp)
                     .background(color = Color.Gray),
-                model = product.image,
+                model = cartProducts.image,
                 alignment = Alignment.Center,
                 contentScale = ContentScale.Crop,
-                contentDescription = "Image of ${product.title}"
+                contentDescription = "Image of ${cartProducts.title}"
             )
             Column(
                 modifier = Modifier
@@ -58,13 +59,13 @@ fun ShoppingCartItem(
                     .padding(start = 90.dp)
                     .absoluteOffset(30.dp, 0.dp)
             ) {
-                Text(text = product.title,
+                Text(text = cartProducts.title,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text =  product.category)
+                Text(text =  cartProducts.category)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(text = "Price: $${product.price}")
+                Text(text = "Price: $${cartProducts.price}")
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }

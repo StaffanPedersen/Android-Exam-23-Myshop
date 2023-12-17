@@ -43,7 +43,7 @@ object MyShopRepository {
         ).fallbackToDestructiveMigration().build()
     }
 
-    fun getProduct(): Flow<List<Products>> = flow {
+   fun getProduct(): Flow<List<Products>> = flow {
         val response = _productService.getAllProducts()
         if (response.isSuccessful) {
             response.body()?.let { products ->

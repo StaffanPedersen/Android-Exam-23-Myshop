@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
 fun TopBar(
     title: String,
     onCartClick: () -> Unit,
+    navController: NavController,
     onOptionsClick: () -> Unit,
     onBackButtonClick: () -> Unit = {}
 ) {
@@ -31,17 +33,18 @@ fun TopBar(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(
-                onClick = { onBackButtonClick() }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "return button"
-                )
+            if (navController.currentDestination?.route != "productListScreen") {
+                IconButton(
+                    onClick = { onBackButtonClick() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "return button"
+                    )
+                }
             }
             Text(
                 modifier = Modifier
-                    //.width(300.dp)
                     .padding(10.dp),
                 text = title,
                 textAlign = TextAlign.Center,
