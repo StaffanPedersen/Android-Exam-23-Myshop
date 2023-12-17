@@ -24,6 +24,7 @@ fun ShoppinCartListScreen(
     onProductClick: (productId: Int) -> Unit = {}
 ) {
     val cartProducts = viewModel.cartProducts.collectAsState().value
+    val totalPrice = viewModel.totalPrice.collectAsState().value
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -54,7 +55,7 @@ fun ShoppinCartListScreen(
                 .height(56.dp)
                 .padding(10.dp)
         ) {
-            Text("Place order")
+            Text("Place order: $${"%.2f".format(totalPrice)}")
         }
     }
 }

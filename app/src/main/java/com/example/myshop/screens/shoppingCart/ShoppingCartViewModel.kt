@@ -5,7 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.myshop.data.CartProducts
 import com.example.myshop.data.ShoppingCartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class ShoppingCartViewModel: ViewModel() {
@@ -23,6 +26,10 @@ class ShoppingCartViewModel: ViewModel() {
             }
         }
     }
+
+    val totalPrice = _cartProducts.map { products ->
+        products.sumByDouble { it.price * it.quantity }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0.0)
 
     fun removeProductFromCart(productId: Int) {
         viewModelScope.launch {

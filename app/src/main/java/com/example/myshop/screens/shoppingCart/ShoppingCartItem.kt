@@ -56,6 +56,8 @@ fun ShoppingCartItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = cartProduct.category)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = "$${cartProduct.price.toString()}")
         }
         Column(
             modifier = Modifier
