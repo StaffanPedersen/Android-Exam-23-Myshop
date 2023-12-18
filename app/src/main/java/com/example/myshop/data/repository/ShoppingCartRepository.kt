@@ -3,7 +3,7 @@ package com.example.myshop.data.repository
 import android.content.Context
 import androidx.room.Room
 import com.example.myshop.data.dataClass.CartProducts
-import com.example.myshop.data.room.ShoppingCartDatabase
+import com.example.myshop.data.room.database.ShoppingCartDatabase
 import kotlinx.coroutines.flow.Flow
 
 object ShoppingCartRepository {

@@ -13,7 +13,5 @@ data class History(
     @ColumnInfo(name = "product_title") val productTitle: String,
     @ColumnInfo(name = "product_quantity") val quantity: Int,
     @ColumnInfo(name = "product_price") val productPrice: Double,
- // @ColumnInfo(name = "product_description") val productDescription: String,
     @ColumnInfo(name = "product_category") val productCategory: String,
 )
-

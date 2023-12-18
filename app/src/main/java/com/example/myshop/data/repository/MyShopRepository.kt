@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.room.Room
 import com.example.myshop.data.dataClass.Products
-import com.example.myshop.data.room.ShopDatabase
+import com.example.myshop.data.room.database.ShopDatabase
 import com.example.myshop.data.service.MyshopService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
