@@ -25,9 +25,7 @@ import java.util.UUID
 @Composable
 fun ShoppinCartListScreen(
     viewModel: ShoppingCartViewModel,
-    onBackButtonClick: () -> Unit = {},
     navController: NavController,
-    onProductClick: (productId: Int) -> Unit = {}
 ) {
     val cartProducts = viewModel.cartProducts.collectAsState().value
     val totalPrice = viewModel.totalPrice.collectAsState().value  // This line will make the totalPrice update itself
@@ -39,7 +37,7 @@ fun ShoppinCartListScreen(
             title = "Shopping Cart",
             onCartClick = {},
             onOptionsClick = {},
-            onBackButtonClick = { onBackButtonClick() },
+            onBackButtonClick = { navController.navigate("productListScreen") },
             navController = navController
         )
 

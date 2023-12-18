@@ -10,7 +10,6 @@ import com.example.myshop.components.TopBar
 @Composable
 fun HistoryListScreen(
     viewModel: HistoryViewModel,
-    onBackButtonClick: () -> Unit = {},
     navController: NavController
 ) {
     val historyItems = viewModel.historyItems.collectAsState().value
@@ -19,8 +18,8 @@ fun HistoryListScreen(
     Column {
         TopBar(
             title = "Purchase History",
-            onBackButtonClick = onBackButtonClick,
-            onCartClick = { /* Handle cart click */ },
+            onBackButtonClick = { navController.navigate("productListScreen") },
+            onCartClick = { navController.navigate("shoppingCartScreen") },
             onOptionsClick = { /* Handle options click */ },
             navController = navController
         )
