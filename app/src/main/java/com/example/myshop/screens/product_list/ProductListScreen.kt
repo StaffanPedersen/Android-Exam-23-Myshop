@@ -96,6 +96,14 @@ fun ProductListScreen(
                     },
                     label = { Text(text = "jewelery") }
                 )
+                Spacer(modifier = Modifier.width(8.dp))
+                FilterChip(
+                    selected = !(filterElectronicsOnly.value || filterMensClothingOnly.value || filterWomenClothingOnly.value || filterJeweleryOnly.value),
+                    onClick = {
+                        viewModel.setProductFilter("none")
+                    },
+                    label = { Text(text = "Filter Off") }
+                )
             }
             LazyColumn(
                 modifier = Modifier

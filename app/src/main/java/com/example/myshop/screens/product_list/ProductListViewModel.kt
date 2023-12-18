@@ -48,28 +48,30 @@ class ProductListViewModel : ViewModel() {
                 _filterWomenClothing.value = false
                 _filterJewelery.value = false
             }
-
             "electronicsOnly" -> {
                 _filterMensClothing.value = false
                 _filterElectronics.value = true
                 _filterWomenClothing.value = false
                 _filterJewelery.value = false
             }
-
             "womenOnly" -> {
                 _filterMensClothing.value = false
                 _filterElectronics.value = false
                 _filterWomenClothing.value = true
                 _filterJewelery.value = false
             }
-
             "jeweleryOnly" -> {
                 _filterMensClothing.value = false
                 _filterElectronics.value = false
                 _filterWomenClothing.value = false
                 _filterJewelery.value = true
             }
-
+            "none" -> {
+                _filterMensClothing.value = false
+                _filterElectronics.value = false
+                _filterWomenClothing.value = false
+                _filterJewelery.value = false
+            }
             else -> {
                 _filterMensClothing.value = false
                 _filterElectronics.value = false
