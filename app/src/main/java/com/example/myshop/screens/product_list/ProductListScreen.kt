@@ -49,7 +49,7 @@ fun ProductListScreen(
         Divider()
         Column (
             modifier = Modifier
-                   .fillMaxSize()
+                .fillMaxSize()
         ) {
             Row(
                 modifier = Modifier
@@ -61,7 +61,7 @@ fun ProductListScreen(
                 FilterChip(
                     selected = filterElectronicsOnly.value,
                     onClick = {
-                        viewModel.setProductFilter(electronicsOnly = !filterElectronicsOnly.value)
+                        viewModel.setProductFilter("electronicsOnly")
                     },
                     label = { Text(text = "Electronics") }
                 )
@@ -69,7 +69,7 @@ fun ProductListScreen(
                 FilterChip(
                     selected = filterMensClothingOnly.value,
                     onClick = {
-                        viewModel.setProductFilter(mensOnly = !filterMensClothingOnly.value)
+                        viewModel.setProductFilter("mensOnly")
                     },
                     label = { Text(text = "Men's clothing") }
                 )
@@ -84,7 +84,7 @@ fun ProductListScreen(
                 FilterChip(
                     selected = filterWomenClothingOnly.value,
                     onClick = {
-                        viewModel.setProductFilter(womenOnly = !filterWomenClothingOnly.value)
+                        viewModel.setProductFilter("womenOnly")
                     },
                     label = { Text(text = "Women's clothing") }
                 )
@@ -92,7 +92,7 @@ fun ProductListScreen(
                 FilterChip(
                     selected = filterJeweleryOnly.value,
                     onClick = {
-                        viewModel.setProductFilter(jeweleryOnly = !filterJeweleryOnly.value)
+                        viewModel.setProductFilter("jeweleryOnly")
                     },
                     label = { Text(text = "jewelery") }
                 )

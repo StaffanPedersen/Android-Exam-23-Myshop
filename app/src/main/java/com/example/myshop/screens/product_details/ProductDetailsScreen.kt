@@ -1,7 +1,6 @@
 package com.example.myshop.screens.product_details
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,12 +13,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
@@ -102,7 +98,7 @@ fun ProductDetailsScreen(
                         modifier = Modifier
                             .width(300.dp)
                             .height(300.dp)
-                            .size(108.dp, 108.dp)
+                            .size(100.dp, 100.dp)
                             .background(color = Color.Gray),
                         model = product.image,
                         alignment = Alignment.Center,
@@ -110,13 +106,7 @@ fun ProductDetailsScreen(
                         contentDescription = "Image of ${product.title}"
                     )
                 }
-                Spacer(modifier = Modifier.height(8.dp))
-                Icon(
-                    imageVector = Icons.Default.FavoriteBorder,
-                    contentDescription = null,
-                    modifier = Modifier.clickable {
-                    }
-                )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = product.title,
                     style = MaterialTheme.typography.headlineSmall,
@@ -125,8 +115,6 @@ fun ProductDetailsScreen(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-
-                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()

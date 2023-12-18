@@ -30,8 +30,8 @@ class ProductListViewModel : ViewModel() {
         filterJewelery
     ) { productList, mensClothing, electronics, womenClothing, jewelery ->
         productList
-            .filter { !mensClothing || it.category == "men's clothing"  }
-            .filter { !electronics || it.category == "electronics"  }
+            .filter { !mensClothing || it.category == "men's clothing" }
+            .filter { !electronics || it.category == "electronics" }
             .filter { !womenClothing || it.category == "women's clothing" }
             .filter { !jewelery || it.category == "jewelery" }
     }.stateIn(
@@ -39,23 +39,43 @@ class ProductListViewModel : ViewModel() {
         started = SharingStarted.Eagerly,
         initialValue = emptyList()
     )
-    fun setProductFilter(
-        mensOnly: Boolean? = null,
-        electronicsOnly: Boolean? = null,
-        womenOnly: Boolean? = null,
-        jeweleryOnly: Boolean? = null
-    ) {
-        mensOnly?.let {
-            _filterMensClothing.value = it
-        }
-        electronicsOnly?.let {
-            _filterElectronics.value = it
-        }
-        womenOnly?.let {
-            _filterWomenClothing.value = it
-        }
-        jeweleryOnly?.let {
-            _filterJewelery.value = it
+
+    fun setProductFilter(category: String) {
+        when (category) {
+            "mensOnly" -> {
+                _filterMensClothing.value = true
+                _filterElectronics.value = false
+                _filterWomenClothing.value = false
+                _filterJewelery.value = false
+            }
+
+            "electronicsOnly" -> {
+                _filterMensClothing.value = false
+                _filterElectronics.value = true
+                _filterWomenClothing.value = false
+                _filterJewelery.value = false
+            }
+
+            "womenOnly" -> {
+                _filterMensClothing.value = false
+                _filterElectronics.value = false
+                _filterWomenClothing.value = true
+                _filterJewelery.value = false
+            }
+
+            "jeweleryOnly" -> {
+                _filterMensClothing.value = false
+                _filterElectronics.value = false
+                _filterWomenClothing.value = false
+                _filterJewelery.value = true
+            }
+
+            else -> {
+                _filterMensClothing.value = false
+                _filterElectronics.value = false
+                _filterWomenClothing.value = false
+                _filterJewelery.value = false
+            }
         }
     }
 }
