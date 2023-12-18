@@ -43,18 +43,13 @@ fun ProductDetailsScreen(
     onBackButtonClick: () -> Unit = {},
     onCartClick: () -> Unit = {},
     navController: NavController
-
-
 ) {
     val productState = viewModel.selectedProduct.collectAsState()
     val product = productState.value
-  //  val shoppingCartViewModel = ShoppingCartViewModel()
     if (product == null) {
         Text(text = "Failed to get details.")
         return
     }
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -103,7 +98,6 @@ fun ProductDetailsScreen(
                 )
                 {
 
-
                     AsyncImage(
                         modifier = Modifier
                             .width(300.dp)
@@ -117,12 +111,10 @@ fun ProductDetailsScreen(
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-
                 Icon(
                     imageVector = Icons.Default.FavoriteBorder,
                     contentDescription = null,
                     modifier = Modifier.clickable {
-
                     }
                 )
                 Text(
@@ -135,20 +127,15 @@ fun ProductDetailsScreen(
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color.LightGray)
                         .shadow(1.dp),
-
                     text = "Description: ${product.description}",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Medium,
                 )
-
-
-
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
@@ -169,8 +156,6 @@ fun ProductDetailsScreen(
                     text = "Price: $${product.price}",
                     )
                 Spacer(modifier = Modifier.height(20.dp))
-
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -178,7 +163,6 @@ fun ProductDetailsScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // shoppingcart button
                     Button(
                         onClick = { viewModel.addProductToCart(product) },
                         contentPadding = ButtonDefaults.ButtonWithIconContentPadding
@@ -186,7 +170,7 @@ fun ProductDetailsScreen(
                         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                         Text("Add to shopping cart")
                     }
-                    }
+                }
             }
         }
     }

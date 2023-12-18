@@ -40,9 +40,8 @@ fun ShoppinCartListScreen(
             onBackButtonClick = { navController.navigate("productListScreen") },
             navController = navController
         )
-
         LazyColumn(
-            modifier = Modifier.weight(1f)  // This will make the LazyColumn take up all available space
+            modifier = Modifier.weight(1f)
         ) {
             items(cartProducts) { cartProduct ->
                 ShoppingCartItem(

@@ -39,7 +39,6 @@ class ProductListViewModel : ViewModel() {
         started = SharingStarted.Eagerly,
         initialValue = emptyList()
     )
-
     fun setProductFilter(
         mensOnly: Boolean? = null,
         electronicsOnly: Boolean? = null,

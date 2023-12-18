@@ -29,11 +29,8 @@ fun ProductListScreen(
     onProductClick: (productId: Int) -> Unit = {},
     onCartClick: () -> Unit = {},
     navController: NavController
-
 ) {
-
     val product = viewModel.product.collectAsState()
-
     val filterMensClothingOnly = viewModel.filterMensClothing.collectAsState()
     val filterElectronicsOnly = viewModel.filterElectronics.collectAsState()
     val filterWomenClothingOnly = viewModel.filterWomenClothing.collectAsState()
@@ -49,16 +46,11 @@ fun ProductListScreen(
             onOptionsClick = {},
             navController = navController
         )
-
         Divider()
-
         Column (
             modifier = Modifier
                    .fillMaxSize()
-
-
         ) {
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,7 +96,6 @@ fun ProductListScreen(
                     },
                     label = { Text(text = "jewelery") }
                 )
-
             }
             LazyColumn(
                 modifier = Modifier

@@ -49,25 +49,21 @@ object MyShopRepository {
             response.body()?.let { products ->
 
                 _productDao.insertProducts(products)
-                emitAll(_productDao.getAllProducts()) // Stream the new list from the database
+                emitAll(_productDao.getAllProducts())
             } ?: throw Exception("failed: Empty response body")
         } else {
             throw Exception("Response was not successful")
         }
     }.onStart {
-        // Emit current data before fetching
+
         emit(_productDao.getAllProducts().first())
     }.catch { e ->
-        // Log the error and fallback to local data
+
         Log.e("MyshopRepository", "Failed to get list of products", e)
-        emitAll(_productDao.getAllProducts()) // Continue streaming from the local data
-    }.flowOn(Dispatchers.IO) // Use the IO dispatcher for database and network operations
+        emitAll(_productDao.getAllProducts())
+    }.flowOn(Dispatchers.IO)
 
     fun getProductById(productId: Int): Flow<Products?> {
         return _productDao.getProductById(productId).flowOn(Dispatchers.IO)
-    }
-
-    suspend fun updateProduct(product: Products) {
-        _productDao.updateProduct(product)
     }
 }

@@ -20,7 +20,6 @@ class ShoppingCartViewModel: ViewModel() {
     init {
         fetchCartProducts()
     }
-
     private fun fetchCartProducts() {
         viewModelScope.launch {
             ShoppingCartRepository.getAllCartProducts().collect { products ->
@@ -28,23 +27,19 @@ class ShoppingCartViewModel: ViewModel() {
             }
         }
     }
-
     val totalPrice = _cartProducts.map { products ->
         products.sumByDouble { it.price * it.quantity }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0.0)
-
     fun removeProductFromCart(productId: Int) {
         viewModelScope.launch {
             ShoppingCartRepository.removeProductFromCart(productId)
         }
     }
-
     fun insertHistory(history: History) {
         viewModelScope.launch {
             HistoryRepository.insertHistory(history)
         }
     }
-
     suspend fun clearCart() {
         viewModelScope.launch {
             ShoppingCartRepository.clearCart()

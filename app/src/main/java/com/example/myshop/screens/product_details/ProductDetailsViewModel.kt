@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 class ProductDetailsViewModel : ViewModel() {
     var selectedProduct: StateFlow<Products?> = MutableStateFlow(null)
         private set
-
     fun setSelectedProduct(productId: Int) {
         selectedProduct = MyShopRepository.getProductById(productId)
             .stateIn(
@@ -24,17 +23,14 @@ class ProductDetailsViewModel : ViewModel() {
                 initialValue = null
             )
     }
-
     fun addProductToCart(product: Products) {
         viewModelScope.launch {
             val existingProduct = ShoppingCartRepository.getCartProductById(product.id)
 
             if (existingProduct != null) {
-                // The product already exists in the cart, so increase the quantity
                 existingProduct.quantity += 1
                 ShoppingCartRepository.updateCartProduct(existingProduct)
             } else {
-                // The product does not exist in the cart, so add a new entry
                 val cartProduct = CartProducts(
                     id = product.id,
                     title = product.title,

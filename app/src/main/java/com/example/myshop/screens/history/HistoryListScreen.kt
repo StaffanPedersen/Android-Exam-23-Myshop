@@ -20,7 +20,7 @@ fun HistoryListScreen(
             title = "Purchase History",
             onBackButtonClick = { navController.navigate("productListScreen") },
             onCartClick = { navController.navigate("shoppingCartScreen") },
-            onOptionsClick = { /* Handle options click */ },
+            onOptionsClick = {},
             navController = navController
         )
 
