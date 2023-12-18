@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.myshop.data.History
+import com.example.myshop.data.dataClass.History
 import kotlinx.coroutines.flow.Flow
 
 @Dao

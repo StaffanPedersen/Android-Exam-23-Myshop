@@ -2,10 +2,10 @@ package com.example.myshop.screens.product_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myshop.data.CartProducts
-import com.example.myshop.data.MyShopRepository
-import com.example.myshop.data.Products
-import com.example.myshop.data.ShoppingCartRepository
+import com.example.myshop.data.dataClass.CartProducts
+import com.example.myshop.data.dataClass.Products
+import com.example.myshop.data.repository.MyShopRepository
+import com.example.myshop.data.repository.ShoppingCartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

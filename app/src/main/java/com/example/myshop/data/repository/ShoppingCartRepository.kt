@@ -1,7 +1,8 @@
-package com.example.myshop.data
+package com.example.myshop.data.repository
 
 import android.content.Context
 import androidx.room.Room
+import com.example.myshop.data.dataClass.CartProducts
 import com.example.myshop.data.room.ShoppingCartDatabase
 import kotlinx.coroutines.flow.Flow
 
@@ -20,7 +21,7 @@ object ShoppingCartRepository {
 
     fun getAllCartProducts(): Flow<List<CartProducts>> = _shoppingCartDao.getAllCartProducts()
 
-    suspend fun getCartProductById(id: Int): CartProducts = _shoppingCartDao.getCartProductById(id)
+    suspend fun getCartProductById(id: Int): CartProducts? = _shoppingCartDao.getCartProductById(id)
 
     suspend fun updateCartProduct(cartProduct: CartProducts) =
         _shoppingCartDao.updateCartProduct(cartProduct)

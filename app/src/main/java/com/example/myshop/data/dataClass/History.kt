@@ -1,4 +1,4 @@
-package com.example.myshop.data
+package com.example.myshop.data.dataClass
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -15,6 +15,5 @@ data class History(
     @ColumnInfo(name = "product_price") val productPrice: Double,
  // @ColumnInfo(name = "product_description") val productDescription: String,
     @ColumnInfo(name = "product_category") val productCategory: String,
-) {
+)
 
-}

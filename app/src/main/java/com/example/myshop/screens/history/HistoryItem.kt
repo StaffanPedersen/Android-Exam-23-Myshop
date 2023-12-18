@@ -13,13 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.myshop.data.History
+import com.example.myshop.data.dataClass.History
 
 @Composable
 fun HistoryItem(
     historyItems: List<History>,
 ) {
-    val totalPrice = historyItems.sumByDouble { it.productPrice * it.quantity }
+    val totalPrice = historyItems.sumOf { it.productPrice * it.quantity }
 
     Column(
         modifier = Modifier

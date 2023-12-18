@@ -1,8 +1,10 @@
-package com.example.myshop.data
+package com.example.myshop.data.repository
 
 import android.content.Context
 import androidx.room.Room
+import com.example.myshop.data.dataClass.History
 import com.example.myshop.data.room.HistoryDatabase
+import com.example.myshop.data.service.HistoryService
 import kotlinx.coroutines.flow.Flow
 
 object HistoryRepository : HistoryService {

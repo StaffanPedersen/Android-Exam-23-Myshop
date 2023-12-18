@@ -10,9 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.myshop.data.HistoryRepository
-import com.example.myshop.data.MyShopRepository
-import com.example.myshop.data.ShoppingCartRepository
+import com.example.myshop.data.repository.HistoryRepository
+import com.example.myshop.data.repository.MyShopRepository
+import com.example.myshop.data.repository.ShoppingCartRepository
 import com.example.myshop.screens.history.HistoryListScreen
 import com.example.myshop.screens.history.HistoryViewModel
 import com.example.myshop.screens.product_details.ProductDetailsScreen

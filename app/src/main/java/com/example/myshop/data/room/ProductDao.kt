@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.myshop.data.Products
+import com.example.myshop.data.dataClass.Products
 import kotlinx.coroutines.flow.Flow
 
 

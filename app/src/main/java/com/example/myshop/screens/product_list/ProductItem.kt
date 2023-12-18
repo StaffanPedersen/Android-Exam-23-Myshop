@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.myshop.data.Products
+import com.example.myshop.data.dataClass.Products
 
 @Composable
 fun ProductItem(

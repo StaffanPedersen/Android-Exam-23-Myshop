@@ -2,10 +2,10 @@ package com.example.myshop.screens.shoppingCart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myshop.data.CartProducts
-import com.example.myshop.data.History
-import com.example.myshop.data.HistoryRepository
-import com.example.myshop.data.ShoppingCartRepository
+import com.example.myshop.data.dataClass.CartProducts
+import com.example.myshop.data.dataClass.History
+import com.example.myshop.data.repository.HistoryRepository
+import com.example.myshop.data.repository.ShoppingCartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,7 +28,7 @@ class ShoppingCartViewModel: ViewModel() {
         }
     }
     val totalPrice = _cartProducts.map { products ->
-        products.sumByDouble { it.price * it.quantity }
+        products.sumOf { it.price * it.quantity }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0.0)
     fun removeProductFromCart(productId: Int) {
         viewModelScope.launch {

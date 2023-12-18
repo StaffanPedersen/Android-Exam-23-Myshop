@@ -3,7 +3,7 @@ package com.example.myshop.data.room;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.example.myshop.data.CartProducts;
+import com.example.myshop.data.dataClass.CartProducts;
 
 @Database(entities = {CartProducts.class}, version = 7, exportSchema = false)
 
