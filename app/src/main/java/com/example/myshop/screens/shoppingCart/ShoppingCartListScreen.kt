@@ -13,8 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.myshop.components.TopBar
+import com.example.myshop.data.History
+import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.UUID
 
 @Composable
 fun ShoppinCartListScreen(
@@ -24,7 +30,7 @@ fun ShoppinCartListScreen(
     onProductClick: (productId: Int) -> Unit = {}
 ) {
     val cartProducts = viewModel.cartProducts.collectAsState().value
-    val totalPrice = viewModel.totalPrice.collectAsState().value
+    val totalPrice = viewModel.totalPrice.collectAsState().value  // This line will make the totalPrice update itself
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -47,15 +53,37 @@ fun ShoppinCartListScreen(
                 )
             }
         }
+                Button(
+                    onClick = {
+                        val sharedId = UUID.randomUUID().toString()
+                        val current = LocalDateTime.now()
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                        val formatted = current.format(formatter)
 
-        Button(
-            onClick = { /* Handle place order click */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .padding(10.dp)
-        ) {
-            Text("Place order: $${"%.2f".format(totalPrice)}")
-        }
+                        cartProducts.forEach { cartProduct ->
+                            val history = History(
+                                sharedId = sharedId,
+                                productId = cartProduct.id,
+                                purchaseDate = formatted,
+                                productTitle = cartProduct.title,
+                                quantity = cartProduct.quantity,
+                                productPrice = cartProduct.price,
+                                productCategory = cartProduct.category
+                            )
+
+                            viewModel.insertHistory(history)
+                        }
+
+                        viewModel.viewModelScope.launch {
+                            viewModel.clearCart()
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .padding(10.dp)
+                ) {
+                    Text("Place order: $${"%.2f".format(totalPrice)}")
+                }
     }
 }

@@ -64,7 +64,7 @@ fun TopBar(
                     )
                 }
                 IconButton(
-                    onClick = { onOptionsClick() }
+                    onClick = { navController.navigate("historyScreen") }
                 ) {
                     Icon(
                         imageVector = Icons.Default.MoreVert,

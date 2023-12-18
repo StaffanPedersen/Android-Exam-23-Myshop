@@ -3,6 +3,8 @@ package com.example.myshop.screens.shoppingCart
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myshop.data.CartProducts
+import com.example.myshop.data.History
+import com.example.myshop.data.HistoryRepository
 import com.example.myshop.data.ShoppingCartRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -34,6 +36,18 @@ class ShoppingCartViewModel: ViewModel() {
     fun removeProductFromCart(productId: Int) {
         viewModelScope.launch {
             ShoppingCartRepository.removeProductFromCart(productId)
+        }
+    }
+
+    fun insertHistory(history: History) {
+        viewModelScope.launch {
+            HistoryRepository.insertHistory(history)
+        }
+    }
+
+    suspend fun clearCart() {
+        viewModelScope.launch {
+            ShoppingCartRepository.clearCart()
         }
     }
 }

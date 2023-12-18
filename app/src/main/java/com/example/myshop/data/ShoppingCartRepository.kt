@@ -31,5 +31,9 @@ object ShoppingCartRepository {
     suspend fun removeProductFromCart(productId: Int) {
         _shoppingCartDao.deleteCartById(productId)
     }
+    suspend fun clearCart() {
+        // Use the DAO to clear the shopping cart database
+        _shoppingCartDao.clearCart()
+    }
 
 }
